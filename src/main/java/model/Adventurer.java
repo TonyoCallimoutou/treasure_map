@@ -1,15 +1,14 @@
 package main.java.model;
 
-public class Adventurer {
+public class Adventurer extends ItemTreasureMap {
     private String name;
-    private Position position;
     private Orientation orientation;
     private Movement[] movements;
     private int treasures;
 
     public Adventurer(String name, Position position, Orientation orientation, Movement[] movements) {
+        super(position);
         this.name = name;
-        this.position = position;
         this.orientation = orientation;
         this.movements = movements;
         this.treasures = 0;
@@ -17,10 +16,6 @@ public class Adventurer {
 
     public String getName() {
         return name;
-    }
-
-    public Position getPosition() {
-        return position;
     }
 
     public Orientation getOrientation() {
@@ -41,10 +36,6 @@ public class Adventurer {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setPosition(Position position) {
-        this.position = position;
     }
 
     public void setOrientation(Orientation orientation) {

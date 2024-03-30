@@ -68,6 +68,6 @@ public class FileCreateMap {
         Orientation orientation = Orientation.fromLetter(lineSplit[4].charAt(0));
         Movement[] movements = Movement.fromString(lineSplit[5]);
 
-        treasureMap.addAdventurer(new Adventurer(nameAdventurer, positionAdventurer, orientation, movements));
+        treasureMap.addItemTreasureMap(new Adventurer(nameAdventurer, positionAdventurer, orientation, movements));
     }
 }

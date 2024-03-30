@@ -11,7 +11,9 @@ public class FileValidator {
             try {
                 Integer.parseInt(split[1]);
                 Integer.parseInt(split[2]);
-                return true;
+                if (Integer.parseInt(split[1]) > 0 && Integer.parseInt(split[2]) > 0) {
+                    return true;
+                }
             }
             catch (NumberFormatException e) {
                 throw new RuntimeException("Format incorrect for treasure map");

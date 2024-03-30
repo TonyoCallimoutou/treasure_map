@@ -43,14 +43,14 @@ public class FileManagerTest {
 
 
         Mountain mountain = new Mountain(new Position(2, 3));
-        Treasure treasure = new Treasure(new Position(1, 2), 2);
+        Treasure treasure = new Treasure(new Position(3, 2), 2);
         Treasure treasure2 = new Treasure(new Position(2, 2), 1);
         Adventurer adventurer = new Adventurer("Lara", new Position(1, 2), Orientation.SOUTH, Movement.fromString("AADADAGGA"));
 
         TreasureMap treasureMap = new TreasureMap();
         treasureMap.setLimitX(3);
         treasureMap.setLimitY(4);
-        treasureMap.addAdventurer(adventurer);
+        treasureMap.addItemTreasureMap(adventurer);
         treasureMap.addItemTreasureMap(mountain);
         treasureMap.addItemTreasureMap(treasure);
         treasureMap.addItemTreasureMap(treasure2);

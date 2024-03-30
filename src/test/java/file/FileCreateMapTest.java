@@ -17,7 +17,7 @@ public class FileCreateMapTest {
     }
 
     @Test
-    public void TestInitializeTreasureMap() {
+    public void TestSuccessInitializeTreasureMap() {
         FileCreateMap.createTreasureMap("C - 3 - 4", treasureMap);
         assertEquals(3, treasureMap.getLimitX());
         assertEquals(4, treasureMap.getLimitY());
@@ -27,7 +27,7 @@ public class FileCreateMapTest {
     public void TestSuccessAddMountain() {
         FileCreateMap.createTreasureMap("C - 3 - 4", treasureMap);
         FileCreateMap.createTreasureMap("M - 1 - 2", treasureMap);
-        ItemTreasureMap itemMountain = treasureMap.getItemTreasureMap(new Position(1, 2));
+        ItemTreasureMap itemMountain = treasureMap.getItemTreasureMapAtPosition(new Position(1, 2));
         assertTrue(itemMountain instanceof Mountain);
     }
 
@@ -35,7 +35,7 @@ public class FileCreateMapTest {
     public void TestSuccessAddTreasure() {
         FileCreateMap.createTreasureMap("C - 3 - 4", treasureMap);
         FileCreateMap.createTreasureMap("T - 1 - 2 - 2", treasureMap);
-        ItemTreasureMap itemTreasure = treasureMap.getItemTreasureMap(new Position(1, 2));
+        ItemTreasureMap itemTreasure = treasureMap.getItemTreasureMapAtPosition(new Position(1, 2));
         assertTrue(itemTreasure instanceof Treasure);
         assertEquals(2, ((Treasure) itemTreasure).getQuantity());
     }
@@ -45,20 +45,44 @@ public class FileCreateMapTest {
         FileCreateMap.createTreasureMap("C - 3 - 4", treasureMap);
         FileCreateMap.createTreasureMap("A - Lara - 1 - 2 - S - AADADAGGA", treasureMap);
         FileCreateMap.createTreasureMap("A - Lucas - 2 - 4 - N - AAGAADADA", treasureMap);
-        Adventurer adventurer1 = treasureMap.getListAdventurer().get(0);
-        Adventurer adventurer2 = treasureMap.getListAdventurer().get(1);
+        ItemTreasureMap adventurer1 = treasureMap.getItemTreasureMapAtPosition(new Position(1, 2));
+        ItemTreasureMap adventurer2 = treasureMap.getItemTreasureMapAtPosition(new Position(2, 4));
 
-        assertEquals("Lara", adventurer1.getName());
+        assertTrue(adventurer1 instanceof Adventurer);
+        assertTrue(adventurer2 instanceof Adventurer);
+
+
+        assertEquals("Lara", ((Adventurer) adventurer1).getName());
         assertEquals(1, adventurer1.getPosition().getX());
         assertEquals(2, adventurer1.getPosition().getY());
-        assertEquals('S', adventurer1.getOrientation().getLetter());
-        assertEquals("AADADAGGA", adventurer1.getStringMovements());
+        assertEquals('S', ((Adventurer) adventurer1).getOrientation().getLetter());
+        assertEquals("AADADAGGA", ((Adventurer) adventurer1).getStringMovements());
 
-        assertEquals("Lucas", adventurer2.getName());
+        assertEquals("Lucas", ((Adventurer) adventurer2).getName());
         assertEquals(2, adventurer2.getPosition().getX());
         assertEquals(4, adventurer2.getPosition().getY());
-        assertEquals('N', adventurer2.getOrientation().getLetter());
-        assertEquals("AAGAADADA", adventurer2.getStringMovements());
+        assertEquals('N', ((Adventurer) adventurer2).getOrientation().getLetter());
+        assertEquals("AAGAADADA", ((Adventurer) adventurer2).getStringMovements());
+    }
+
+    @Test
+    public void TestFailedInitializeTreasureMap() {
+        try {
+            FileCreateMap.createTreasureMap("C - -2 - 4", treasureMap);
+            fail("Expected exception was not thrown");
+        } catch (RuntimeException e) {
+            assertEquals("Format incorrect for treasure map", e.getMessage());
+        }
+    }
+
+    @Test
+    public void TestFailedAddItemBeforeInitMap() {
+        try {
+            FileCreateMap.createTreasureMap("M - 1 - 2", treasureMap);
+            fail("Expected exception was not thrown");
+        } catch (RuntimeException e) {
+            assertEquals("The map must be initialized before adding items", e.getMessage());
+        }
     }
 
     @Test
