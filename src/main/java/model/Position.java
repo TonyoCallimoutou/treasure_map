@@ -1,24 +1,26 @@
 package main.java.model;
 
-public class Position {
-    private Integer x;
-    private Integer y;
+import java.util.Objects;
 
-    public Position(Integer x, Integer y) {
+public class Position {
+    private int x;
+    private int y;
+
+    public Position(int x, int y) {
         this.x = x;
         this.y = y;
     }
 
-    public Integer getX() {
+    public int getX() {
         return x;
     }
-    public Integer getY() {
+    public int getY() {
         return y;
     }
-    public void setX(Integer x) {
+    public void setX(int x) {
         this.x = x;
     }
-    public void setY(Integer y) {
+    public void setY(int y) {
         this.y = y;
     }
 
@@ -31,12 +33,12 @@ public class Position {
             return false;
         }
         Position position = (Position) obj;
-        return x.equals(position.x) && y.equals(position.y);
+        return x == position.x && y == position.y;
     }
 
     @Override
     public int hashCode() {
-        return x.hashCode() + y.hashCode();
+        return Objects.hash(x, y);
     }
 
     @Override

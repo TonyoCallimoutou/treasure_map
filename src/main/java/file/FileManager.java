@@ -10,7 +10,7 @@ public class FileManager {
     public static TreasureMap createTreasureMapReadFileFromTxt(String file) {
 
         try {
-            FileReader fileReader = new FileReader("src/main/resources/" + file );
+            FileReader fileReader = new FileReader(file);
 
             BufferedReader reader = new BufferedReader(fileReader);
 
@@ -29,9 +29,10 @@ public class FileManager {
         }
     }
 
-    public static void writeFileForSaveResult(TreasureMap treasureMap) {
+    public static void writeFileForSaveResult(TreasureMap treasureMap, String file) {
+
         try {
-            FileWriter fileWriter = new FileWriter("src/main/resources/result.txt", false);
+            FileWriter fileWriter = new FileWriter(file, false);
 
             BufferedWriter writer = new BufferedWriter(fileWriter);
 

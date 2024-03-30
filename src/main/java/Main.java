@@ -5,10 +5,12 @@ import main.java.model.TreasureMap;
 
 public class Main {
     public static void main(String[] args) {
-        TreasureMap treasureMap = FileManager.createTreasureMapReadFileFromTxt("input.txt");
+        String file = "src/main/resources/input.txt";
+        String result = "src/main/resources/result.txt";
+        TreasureMap treasureMap = FileManager.createTreasureMapReadFileFromTxt(file);
 
         // TODO
 
-        FileManager.writeFileForSaveResult(treasureMap);
+        FileManager.writeFileForSaveResult(treasureMap, result);
     }
 }

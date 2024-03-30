@@ -1,18 +1,18 @@
 package main.java.model;
 
 public class Treasure extends ItemTreasureMap {
-    private Integer quantity;
+    private int quantity;
 
-    public Treasure(Position position, Integer quantity) {
+    public Treasure(Position position, int quantity) {
         super(position);
         this.quantity = quantity;
     }
 
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(Integer quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 }
