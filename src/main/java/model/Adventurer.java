@@ -1,12 +1,16 @@
 package main.java.model;
 
+import main.java.utils.AdventurerUtils;
+
+import java.util.List;
+
 public class Adventurer extends ItemTreasureMap {
-    private String name;
+    private final String name;
     private Orientation orientation;
-    private Movement[] movements;
+    private final List<Movement> movements;
     private int treasures;
 
-    public Adventurer(String name, Position position, Orientation orientation, Movement[] movements) {
+    public Adventurer(String name, Position position, Orientation orientation, List<Movement> movements) {
         super(position);
         this.name = name;
         this.orientation = orientation;
@@ -22,28 +26,16 @@ public class Adventurer extends ItemTreasureMap {
         return orientation;
     }
 
-    public Movement[] getMovements() {
+    public List<Movement> getMovements() {
         return movements;
     }
 
     public String getStringMovements() {
-        StringBuilder strMovements = new StringBuilder();
-        for (Movement movement : movements) {
-            strMovements.append(movement.getLetter());
-        }
-        return strMovements.toString();
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return AdventurerUtils.getStringMovements(movements);
     }
 
     public void setOrientation(Orientation orientation) {
         this.orientation = orientation;
-    }
-
-    public void setMovements(Movement[] movements) {
-        this.movements = movements;
     }
 
     public int getTreasures() {
@@ -52,5 +44,10 @@ public class Adventurer extends ItemTreasureMap {
 
     public void addTreasure() {
         this.treasures++;
+    }
+
+    @Override
+    public String toString() {
+        return "A - " + name + " - " + getPosition().getX() + " - " + getPosition().getY() + " - " + orientation.getLetter() + " - " + treasures;
     }
 }

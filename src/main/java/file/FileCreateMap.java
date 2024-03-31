@@ -2,6 +2,8 @@ package main.java.file;
 
 import main.java.model.*;
 
+import java.util.List;
+
 import static main.java.file.FileValidator.*;
 import static main.java.file.FileValidator.isFormatCorrectForAdventurer;
 
@@ -66,7 +68,9 @@ public class FileCreateMap {
         String nameAdventurer = lineSplit[1];
         Position positionAdventurer = new Position(Integer.parseInt(lineSplit[2]), Integer.parseInt(lineSplit[3]));
         Orientation orientation = Orientation.fromLetter(lineSplit[4].charAt(0));
-        Movement[] movements = Movement.fromString(lineSplit[5]);
+        List<Movement> movements = Movement.fromString(lineSplit[5]);
+
+        treasureMap.setNbrOfTurns(movements.size());
 
         treasureMap.addItemTreasureMap(new Adventurer(nameAdventurer, positionAdventurer, orientation, movements));
     }

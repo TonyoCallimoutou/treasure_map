@@ -48,8 +48,8 @@ public class FileManagerTest {
         Adventurer adventurer = new Adventurer("Lara", new Position(1, 2), Orientation.SOUTH, Movement.fromString("AADADAGGA"));
 
         TreasureMap treasureMap = new TreasureMap();
-        treasureMap.setLimitX(3);
-        treasureMap.setLimitY(4);
+        treasureMap.setLimitX(4);
+        treasureMap.setLimitY(5);
         treasureMap.addItemTreasureMap(adventurer);
         treasureMap.addItemTreasureMap(mountain);
         treasureMap.addItemTreasureMap(treasure);

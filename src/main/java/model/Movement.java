@@ -1,5 +1,6 @@
 package main.java.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public enum Movement {
@@ -22,14 +23,14 @@ public enum Movement {
      * @param str
      * @return list of movements
      */
-    public static Movement[] fromString(String str) {
+    public static List<Movement> fromString(String str) {
         List<Character> letters = str.chars()
                 .mapToObj(e -> (char)e)
                 .toList();
 
-        Movement[] movements = new Movement[letters.size()];
+        List<Movement> movements = new ArrayList<>();
         for (int i = 0; i < letters.size(); i++) {
-            movements[i] = fromLetter(letters.get(i));
+            movements.add(fromLetter(letters.get(i)));
         }
 
         return movements;

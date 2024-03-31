@@ -12,7 +12,12 @@ public class Treasure extends ItemTreasureMap {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void removeOne() {
+        quantity--;
+    }
+
+    @Override
+    public String toString() {
+        return "T - " + getPosition().getX() + " - " + getPosition().getY() + " - " + quantity;
     }
 }

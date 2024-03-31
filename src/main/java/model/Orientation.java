@@ -29,4 +29,22 @@ public enum Orientation {
         }
         throw new IllegalArgumentException("No orientation found for letter: " + letter);
     }
+
+    public Orientation turnLeft() {
+        return switch (this) {
+            case NORTH -> WEST;
+            case EAST -> NORTH;
+            case SOUTH -> EAST;
+            case WEST -> SOUTH;
+        };
+    }
+
+    public Orientation turnRight() {
+        return switch (this) {
+            case NORTH -> EAST;
+            case EAST -> SOUTH;
+            case SOUTH -> WEST;
+            case WEST -> NORTH;
+        };
+    }
 }

@@ -1,7 +1,9 @@
 package main.java.model;
 
+import main.java.utils.AdventurerUtils;
 import main.java.utils.TreasureMapUtils;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -9,12 +11,14 @@ import java.util.Map;
 public class TreasureMap {
     private int limitX;
     private int limitY;
-    private Map<Position,ItemTreasureMap> mapItems;
+    private final Map<Position,ItemTreasureMap> mapItems;
+    private int nbrOfTurns;
 
     public TreasureMap() {
         this.limitX = 0;
         this.limitY = 0;
         this.mapItems = new HashMap<>();
+        this.nbrOfTurns = 0;
     }
 
     public int getLimitX() {
@@ -33,6 +37,10 @@ public class TreasureMap {
         return mapItems.get(position);
     }
 
+    public List<Adventurer> getAllAdventurer() {
+        return TreasureMapUtils.getAllAdventurer(this);
+    }
+
     public void setLimitX(int limitX) {
         this.limitX = limitX;
     }
@@ -41,12 +49,26 @@ public class TreasureMap {
         this.limitY = limitY;
     }
 
+    public void setNbrOfTurns(int nbrOfTurns) {
+        this.nbrOfTurns = Integer.max(this.nbrOfTurns, nbrOfTurns);
+    }
+
     /**
      * Add a Mountain or Treasure to the map
      * @param item
      */
     public void addItemTreasureMap(ItemTreasureMap item) {
         TreasureMapUtils.addItemTreasureMap(this, item);
+    }
+
+    public void removeTreasure(ItemTreasureMap item) {
+        mapItems.remove(item.getPosition());
+    }
+
+    public void doAction() {
+        for (int i=0; i<nbrOfTurns; i++) {
+            TreasureMapUtils.moveAdventurerNextMove(this);
+        }
     }
 
     /**

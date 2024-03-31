@@ -9,7 +9,7 @@ public class Main {
         String result = "src/main/resources/result.txt";
         TreasureMap treasureMap = FileManager.createTreasureMapReadFileFromTxt(file);
 
-        // TODO
+        treasureMap.doAction();
 
         FileManager.writeFileForSaveResult(treasureMap, result);
     }

@@ -44,9 +44,9 @@ public class FileCreateMapTest {
     public void TestSuccessAddAdventurer() {
         FileCreateMap.createTreasureMap("C - 3 - 4", treasureMap);
         FileCreateMap.createTreasureMap("A - Lara - 1 - 2 - S - AADADAGGA", treasureMap);
-        FileCreateMap.createTreasureMap("A - Lucas - 2 - 4 - N - AAGAADADA", treasureMap);
+        FileCreateMap.createTreasureMap("A - Lucas - 2 - 3 - N - AAGAADADA", treasureMap);
         ItemTreasureMap adventurer1 = treasureMap.getItemTreasureMapAtPosition(new Position(1, 2));
-        ItemTreasureMap adventurer2 = treasureMap.getItemTreasureMapAtPosition(new Position(2, 4));
+        ItemTreasureMap adventurer2 = treasureMap.getItemTreasureMapAtPosition(new Position(2, 3));
 
         assertTrue(adventurer1 instanceof Adventurer);
         assertTrue(adventurer2 instanceof Adventurer);
@@ -60,7 +60,7 @@ public class FileCreateMapTest {
 
         assertEquals("Lucas", ((Adventurer) adventurer2).getName());
         assertEquals(2, adventurer2.getPosition().getX());
-        assertEquals(4, adventurer2.getPosition().getY());
+        assertEquals(3, adventurer2.getPosition().getY());
         assertEquals('N', ((Adventurer) adventurer2).getOrientation().getLetter());
         assertEquals("AAGAADADA", ((Adventurer) adventurer2).getStringMovements());
     }
