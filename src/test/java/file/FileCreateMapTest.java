@@ -66,7 +66,7 @@ public class FileCreateMapTest {
     }
 
     @Test
-    public void TestFailedInitializeTreasureMap() {
+    public void TestFailedInitializeTreasureMapWithLimitXNegative() {
         try {
             FileCreateMap.createTreasureMap("C - -2 - 4", treasureMap);
             fail("Expected exception was not thrown");

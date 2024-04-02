@@ -1,10 +1,31 @@
 package org.treasure_map.file;
 
+import org.treasure_map.constants.ArgsConst;
 import org.treasure_map.model.TreasureMap;
 
 import java.io.*;
 
 public class FileManager {
+
+    /**
+     * Get the input and output file from the args
+     * @param args
+     * @return String[] with the input file and output file
+     */
+    public static String[] getFileFromArgs(String[] args) {
+        String inputFilePath = ArgsConst.DEFAULT_INPUT;
+        String outputFilePath = ArgsConst.DEFAULT_OUTPUT;
+        for (String arg : args) {
+            if (arg.startsWith(ArgsConst.INPUT)) {
+                inputFilePath = arg.substring(ArgsConst.INPUT.length());
+            } else if (arg.startsWith(ArgsConst.OUTPUT)) {
+                outputFilePath = arg.substring(ArgsConst.OUTPUT.length());
+            }
+        }
+
+        return new String[] {inputFilePath, outputFilePath};
+    }
+
     public static TreasureMap createTreasureMapReadFileFromTxt(String file) {
 
         try {
@@ -16,8 +37,14 @@ public class FileManager {
 
             TreasureMap treasureMap = new TreasureMap();
 
+            if (line == null) {
+                throw new RuntimeException("The file is empty");
+            }
+
             while (line != null) {
-                FileCreateMap.createTreasureMap(line, treasureMap);
+                if (!line.isEmpty()) {
+                    FileCreateMap.createTreasureMap(line, treasureMap);
+                }
                 line = reader.readLine();
             }
             reader.close();
@@ -40,6 +67,8 @@ public class FileManager {
             }
 
             writer.close();
+
+            System.out.println("The result is saved in " + file);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

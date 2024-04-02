@@ -24,7 +24,7 @@ public class FileManagerTest {
     }
 
     @Test
-    public void testFailedCreateTreasureMapReadFileFromTxt() {
+    public void testFailedInexistingFileFromTxt() {
 
         String testFile = "src/test/resources/fake_input.txt";
         try {
@@ -32,6 +32,48 @@ public class FileManagerTest {
             fail("Expected exception was not thrown");
         } catch (RuntimeException e) {
             assertNotNull(e);
+        }
+    }
+
+    @Test
+    public void testFailedCreateTreasureMapReadFileFromTxtBlank() {
+
+        String testFile = "src/test/resources/input_blank.txt";
+        try {
+            FileManager.createTreasureMapReadFileFromTxt(testFile);
+            fail("Expected exception was not thrown");
+        } catch (RuntimeException e) {
+            assertEquals("The file is empty", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testFailedCreateTreasureMapReadFileFromTxtMultiMap() {
+
+        String testFile = "src/test/resources/input_with_multi_map.txt";
+        try {
+            FileManager.createTreasureMapReadFileFromTxt(testFile);
+            fail("Expected exception was not thrown");
+        } catch (RuntimeException e) {
+            assertEquals("The map is already initialized", e.getMessage());
+        }
+    }
+
+    @Test
+    public void testCreateTreasureMapReadFileFromTxtWithSpace() {
+        String testFile = "src/test/resources/input_with_space.txt";
+        TreasureMap treasureMap = FileManager.createTreasureMapReadFileFromTxt(testFile);
+        assertNotNull(treasureMap);
+    }
+
+    @Test
+    public void testFailedCreateTreasureMapReadFileFromTxtChangeSeparator() {
+        String testFile = "src/test/resources/input_change_separator.txt";
+        try {
+            FileManager.createTreasureMapReadFileFromTxt(testFile);
+            fail("Expected exception was not thrown");
+        } catch (RuntimeException e) {
+            assertEquals("Format incorrect for treasure map ", e.getMessage());
         }
     }
 
@@ -69,9 +111,9 @@ public class FileManagerTest {
     }
 
     @Test
-    public void testFailedWriteFileForSaveResult() {
+    public void testFailedInexistingFolderWriteFileForSaveResult() {
 
-        String file = "src/test/resources/result.txt";
+        String file = "src/test/resources/folder/result.txt";
 
         Path filePath = Paths.get(file);
         assertFalse(Files.exists(filePath));
@@ -90,14 +132,11 @@ public class FileManagerTest {
         treasureMap.addItemTreasureMap(treasure);
         treasureMap.addItemTreasureMap(treasure2);
 
-        FileManager.writeFileForSaveResult(treasureMap, file);
-
-        assertTrue(Files.exists(filePath));
-
         try {
-            Files.delete(filePath);
-        } catch (IOException e) {
-            fail("Error deleting file");
+            FileManager.writeFileForSaveResult(treasureMap, file);
+            fail("Expected exception was not thrown");
+        } catch (RuntimeException e) {
+            assertNotNull(e);
         }
     }
 

@@ -46,6 +46,9 @@ public class FileCreateMap {
     }
 
     private static void initializeTreasureMap(String[] lineSplit, TreasureMap treasureMap) {
+        if (treasureMap.getLimitX() != 0 || treasureMap.getLimitY() != 0) {
+            throw new RuntimeException("The map is already initialized");
+        }
         treasureMap.setLimitX(Integer.parseInt(lineSplit[FileConst.INDEX_MAP_LIMIT_X]));
         treasureMap.setLimitY(Integer.parseInt(lineSplit[FileConst.INDEX_MAP_LIMIT_Y]));
     }
