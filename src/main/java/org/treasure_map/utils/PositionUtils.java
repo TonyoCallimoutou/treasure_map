@@ -1,6 +1,6 @@
-package main.java.utils;
+package org.treasure_map.utils;
 
-import main.java.model.Position;
+import org.treasure_map.model.Position;
 
 public class PositionUtils {
 

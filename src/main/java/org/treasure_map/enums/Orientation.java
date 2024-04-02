@@ -1,4 +1,4 @@
-package main.java.enums;
+package org.treasure_map.enums;
 
 public enum Orientation {
     NORTH('N'),

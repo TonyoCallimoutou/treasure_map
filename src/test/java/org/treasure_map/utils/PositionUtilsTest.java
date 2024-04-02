@@ -1,7 +1,6 @@
-package test.java.utils;
+package org.treasure_map.utils;
 
-import main.java.model.Position;
-import main.java.utils.PositionUtils;
+import org.treasure_map.model.Position;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

@@ -1,7 +1,7 @@
-package main.java.model;
+package org.treasure_map.model;
 
-import main.java.constants.FileConst;
-import main.java.enums.LetterItem;
+import org.treasure_map.constants.FileConst;
+import org.treasure_map.enums.LetterItem;
 
 public class Treasure extends ItemTreasureMap {
     private int quantity;

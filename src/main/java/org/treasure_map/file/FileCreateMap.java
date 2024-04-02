@@ -1,15 +1,12 @@
-package main.java.file;
+package org.treasure_map.file;
 
-import main.java.constants.FileConst;
-import main.java.enums.LetterItem;
-import main.java.enums.Movement;
-import main.java.enums.Orientation;
-import main.java.model.*;
+import org.treasure_map.constants.FileConst;
+import org.treasure_map.enums.LetterItem;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.enums.Orientation;
+import org.treasure_map.model.*;
 
 import java.util.List;
-
-import static main.java.file.FileValidator.*;
-import static main.java.file.FileValidator.isFormatCorrectForAdventurer;
 
 public class FileCreateMap {
 
@@ -26,22 +23,22 @@ public class FileCreateMap {
             case COMMENT:
                 break;
             case MAP:
-                if (isFormatCorrectForTreasureMap(line)) {
+                if (FileValidator.isFormatCorrectForTreasureMap(line)) {
                     initializeTreasureMap(lineSplit, treasureMap);
                 }
                 break;
             case MOUNTAIN:
-                if (isFormatCorrectForMountain(line)) {
+                if (FileValidator.isFormatCorrectForMountain(line)) {
                     addMountain(lineSplit, treasureMap);
                 }
                 break;
             case TREASURE:
-                if (isFormatCorrectForTreasure(line)) {
+                if (FileValidator.isFormatCorrectForTreasure(line)) {
                     addTreasure(lineSplit, treasureMap);
                 }
                 break;
             case ADVENTURER:
-                if (isFormatCorrectForAdventurer(line)) {
+                if (FileValidator.isFormatCorrectForAdventurer(line)) {
                     addAdventurer(lineSplit, treasureMap);
                 }
                 break;

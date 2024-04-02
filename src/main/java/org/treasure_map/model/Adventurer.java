@@ -1,10 +1,10 @@
-package main.java.model;
+package org.treasure_map.model;
 
-import main.java.constants.FileConst;
-import main.java.enums.LetterItem;
-import main.java.enums.Movement;
-import main.java.enums.Orientation;
-import main.java.utils.AdventurerUtils;
+import org.treasure_map.constants.FileConst;
+import org.treasure_map.enums.LetterItem;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.enums.Orientation;
+import org.treasure_map.utils.AdventurerUtils;
 
 import java.util.List;
 

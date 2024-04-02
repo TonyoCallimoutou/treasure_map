@@ -1,9 +1,11 @@
-package main.java.utils;
+package org.treasure_map.utils;
 
-import main.java.constants.FileConst;
-import main.java.enums.LetterItem;
-import main.java.enums.Movement;
-import main.java.model.*;
+import org.treasure_map.constants.FileConst;
+import org.treasure_map.enums.LetterItem;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.model.Adventurer;
+import org.treasure_map.model.ItemTreasureMap;
+import org.treasure_map.model.TreasureMap;
 
 import java.util.ArrayList;
 import java.util.Comparator;

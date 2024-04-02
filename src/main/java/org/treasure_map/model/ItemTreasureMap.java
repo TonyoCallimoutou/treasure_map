@@ -1,4 +1,4 @@
-package main.java.model;
+package org.treasure_map.model;
 
 public class ItemTreasureMap {
 

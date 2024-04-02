@@ -1,9 +1,8 @@
-package main.java.model;
+package org.treasure_map.model;
 
-import main.java.utils.AdventurerUtils;
-import main.java.utils.TreasureMapUtils;
 
-import java.util.ArrayList;
+import org.treasure_map.utils.TreasureMapUtils;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

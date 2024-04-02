@@ -1,4 +1,4 @@
-package main.java.constants;
+package org.treasure_map.constants;
 
 public class FileConst {
     public static final String SEPARATOR = " - ";

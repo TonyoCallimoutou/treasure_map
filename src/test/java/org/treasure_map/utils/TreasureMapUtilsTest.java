@@ -1,17 +1,16 @@
-package test.java.utils;
+package org.treasure_map.utils;
 
-import main.java.enums.Movement;
-import main.java.enums.Orientation;
-import main.java.model.*;
-import main.java.utils.TreasureMapUtils;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.enums.Orientation;
+import org.treasure_map.model.*;
 import org.junit.Test;
 
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class TreasureMapUtilsTest {
-
 
     @Test
     public void testAddItemTreasureMap() {

@@ -1,10 +1,8 @@
-package main.java.file;
+package org.treasure_map.file;
 
-import main.java.model.*;
+import org.treasure_map.model.TreasureMap;
 
 import java.io.*;
-
-import static main.java.file.FileCreateMap.createTreasureMap;
 
 public class FileManager {
     public static TreasureMap createTreasureMapReadFileFromTxt(String file) {
@@ -19,7 +17,7 @@ public class FileManager {
             TreasureMap treasureMap = new TreasureMap();
 
             while (line != null) {
-                createTreasureMap(line, treasureMap);
+                FileCreateMap.createTreasureMap(line, treasureMap);
                 line = reader.readLine();
             }
             reader.close();

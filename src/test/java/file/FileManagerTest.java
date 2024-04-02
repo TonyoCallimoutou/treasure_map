@@ -1,10 +1,10 @@
-package test.java.file;
+package file;
 
-import main.java.enums.Movement;
-import main.java.enums.Orientation;
-import main.java.file.FileManager;
-import main.java.model.*;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.enums.Orientation;
+import org.treasure_map.file.FileManager;
 import org.junit.Test;
+import org.treasure_map.model.*;
 
 import java.io.IOException;
 import java.nio.file.Files;

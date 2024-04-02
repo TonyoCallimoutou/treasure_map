@@ -1,7 +1,7 @@
-package main.java;
+package org.treasure_map;
 
-import main.java.file.FileManager;
-import main.java.model.TreasureMap;
+import org.treasure_map.file.FileManager;
+import org.treasure_map.model.TreasureMap;
 
 public class Main {
     public static void main(String[] args) {

@@ -1,9 +1,9 @@
-package test.java.file;
+package file;
 
-import main.java.file.FileCreateMap;
-import main.java.model.*;
+import org.treasure_map.file.FileCreateMap;
 import org.junit.Before;
 import org.junit.Test;
+import org.treasure_map.model.*;
 
 import static org.junit.Assert.*;
 

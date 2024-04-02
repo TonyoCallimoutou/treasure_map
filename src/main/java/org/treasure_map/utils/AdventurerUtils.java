@@ -1,7 +1,7 @@
-package main.java.utils;
+package org.treasure_map.utils;
 
-import main.java.enums.Movement;
-import main.java.model.*;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.model.*;
 
 import java.util.List;
 

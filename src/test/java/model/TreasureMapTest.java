@@ -1,8 +1,10 @@
-package test.java.model;
+package model;
 
-import main.java.enums.Movement;
-import main.java.enums.Orientation;
-import main.java.model.*;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.enums.Orientation;
+import org.treasure_map.model.Adventurer;
+import org.treasure_map.model.Position;
+import org.treasure_map.model.TreasureMap;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

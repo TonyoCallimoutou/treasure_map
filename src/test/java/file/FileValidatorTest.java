@@ -1,10 +1,9 @@
-package test.java.file;
+package file;
 
-import main.java.file.FileValidator;
+import org.treasure_map.file.FileValidator;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-import static org.junit.Assert.assertEquals;
 
 public class FileValidatorTest {
 

@@ -1,8 +1,8 @@
-package main.java.file;
+package org.treasure_map.file;
 
-import main.java.constants.FileConst;
-import main.java.enums.Movement;
-import main.java.enums.Orientation;
+import org.treasure_map.constants.FileConst;
+import org.treasure_map.enums.Movement;
+import org.treasure_map.enums.Orientation;
 
 public class FileValidator {
 
