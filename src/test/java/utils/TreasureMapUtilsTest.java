@@ -1,5 +1,7 @@
 package test.java.utils;
 
+import main.java.enums.Movement;
+import main.java.enums.Orientation;
 import main.java.model.*;
 import main.java.utils.TreasureMapUtils;
 import org.junit.Test;

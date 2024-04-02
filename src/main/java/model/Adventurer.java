@@ -1,5 +1,9 @@
 package main.java.model;
 
+import main.java.constants.FileConst;
+import main.java.enums.LetterItem;
+import main.java.enums.Movement;
+import main.java.enums.Orientation;
 import main.java.utils.AdventurerUtils;
 
 import java.util.List;
@@ -48,6 +52,6 @@ public class Adventurer extends ItemTreasureMap {
 
     @Override
     public String toString() {
-        return "A - " + name + " - " + getPosition().getX() + " - " + getPosition().getY() + " - " + orientation.getLetter() + " - " + treasures;
+        return LetterItem.ADVENTURER.getLetter() + FileConst.SEPARATOR + name + FileConst.SEPARATOR + getPosition().getX() + FileConst.SEPARATOR + getPosition().getY() + FileConst.SEPARATOR + orientation.getLetter() + FileConst.SEPARATOR + treasures;
     }
 }

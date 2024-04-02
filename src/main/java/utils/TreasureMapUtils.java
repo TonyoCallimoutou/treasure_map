@@ -1,5 +1,8 @@
 package main.java.utils;
 
+import main.java.constants.FileConst;
+import main.java.enums.LetterItem;
+import main.java.enums.Movement;
 import main.java.model.*;
 
 import java.util.ArrayList;
@@ -56,7 +59,7 @@ public class TreasureMapUtils {
      */
     public static List<String> toListOfString(TreasureMap treasureMap) {
         List<String> result = new ArrayList<>();
-        result.add("C - " + treasureMap.getLimitX() + " - " + treasureMap.getLimitY());
+        result.add(LetterItem.MAP.getLetter() + FileConst.SEPARATOR + treasureMap.getLimitX() + FileConst.SEPARATOR + treasureMap.getLimitY());
 
         List<ItemTreasureMap> items = new ArrayList<>(treasureMap.getMapItems().values());
         items.sort(Comparator.comparingInt(ItemTreasureMap::getId));

@@ -1,5 +1,8 @@
 package main.java.model;
 
+import main.java.constants.FileConst;
+import main.java.enums.LetterItem;
+
 public class Treasure extends ItemTreasureMap {
     private int quantity;
 
@@ -18,6 +21,6 @@ public class Treasure extends ItemTreasureMap {
 
     @Override
     public String toString() {
-        return "T - " + getPosition().getX() + " - " + getPosition().getY() + " - " + quantity;
+        return LetterItem.TREASURE.getLetter() + FileConst.SEPARATOR + getPosition().getX() + FileConst.SEPARATOR + getPosition().getY() + FileConst.SEPARATOR + quantity;
     }
 }

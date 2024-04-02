@@ -92,7 +92,7 @@ public class FileCreateMapTest {
             FileCreateMap.createTreasureMap("X - 1 - 2", treasureMap);
             fail("Expected exception was not thrown");
         } catch (RuntimeException e) {
-            assertEquals("Format incorrect of first charactere : X", e.getMessage());
+            assertEquals("No item found for letter: X", e.getMessage());
         }
     }
 

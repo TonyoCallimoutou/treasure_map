@@ -1,5 +1,7 @@
 package test.java.file;
 
+import main.java.enums.Movement;
+import main.java.enums.Orientation;
 import main.java.file.FileManager;
 import main.java.model.*;
 import org.junit.Test;
@@ -35,6 +37,39 @@ public class FileManagerTest {
 
     @Test
     public void testWriteFileForSaveResult() {
+
+        String file = "src/test/resources/result.txt";
+
+        Path filePath = Paths.get(file);
+        assertFalse(Files.exists(filePath));
+
+
+        Mountain mountain = new Mountain(new Position(2, 3));
+        Treasure treasure = new Treasure(new Position(3, 2), 2);
+        Treasure treasure2 = new Treasure(new Position(2, 2), 1);
+        Adventurer adventurer = new Adventurer("Lara", new Position(1, 2), Orientation.SOUTH, Movement.fromString("AADADAGGA"));
+
+        TreasureMap treasureMap = new TreasureMap();
+        treasureMap.setLimitX(4);
+        treasureMap.setLimitY(5);
+        treasureMap.addItemTreasureMap(adventurer);
+        treasureMap.addItemTreasureMap(mountain);
+        treasureMap.addItemTreasureMap(treasure);
+        treasureMap.addItemTreasureMap(treasure2);
+
+        FileManager.writeFileForSaveResult(treasureMap, file);
+
+        assertTrue(Files.exists(filePath));
+
+        try {
+            Files.delete(filePath);
+        } catch (IOException e) {
+            fail("Error deleting file");
+        }
+    }
+
+    @Test
+    public void testFailedWriteFileForSaveResult() {
 
         String file = "src/test/resources/result.txt";
 

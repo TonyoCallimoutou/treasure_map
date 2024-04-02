@@ -1,5 +1,6 @@
 package main.java.utils;
 
+import main.java.enums.Movement;
 import main.java.model.*;
 
 import java.util.List;
@@ -50,24 +51,22 @@ public class AdventurerUtils {
         }
         if (PositionUtils.isPositionInBound(newPosition, treasureMap.getLimitX(), treasureMap.getLimitY())) {
             ItemTreasureMap item = treasureMap.getItemTreasureMapAtPosition(newPosition);
-            if (item == null || item.isTreasure()) {
+            if (item == null || item instanceof Treasure) {
                 adventurer.setPosition(newPosition);
                 System.out.println(adventurer.getName() + " move at position (" + adventurer.getPosition().toString() + ")");
             }
-            if (item != null && item.isTreasure()) {
+            if (item instanceof Treasure) {
                 adventurer.addTreasure();
                 ((Treasure) item).removeOne();
                 if (((Treasure) item).getQuantity() == 0) {
                     treasureMap.removeTreasure(item);
                 }
-
                 System.out.println(adventurer.getName() + " collect one more treasure and have " + adventurer.getTreasures() + " treasures now");
             }
-
-            if (item != null && item instanceof Mountain) {
+            else if (item instanceof Mountain) {
                 System.out.println(adventurer.getName() + " is blocked by a mountain ");
             }
-            if (item != null && item instanceof Adventurer) {
+            else if (item instanceof Adventurer) {
                 System.out.println(adventurer.getName() + " is blocked by " + ((Adventurer) item).getName());
             }
         }

@@ -1,17 +1,18 @@
 package main.java.file;
 
-import main.java.model.Movement;
-import main.java.model.Orientation;
+import main.java.constants.FileConst;
+import main.java.enums.Movement;
+import main.java.enums.Orientation;
 
 public class FileValidator {
 
     public static boolean isFormatCorrectForTreasureMap(String line) {
-        String[] split = line.split(" - ");
+        String[] split = line.split(FileConst.SEPARATOR);
         if (split.length == 3) {
             try {
-                Integer.parseInt(split[1]);
-                Integer.parseInt(split[2]);
-                if (Integer.parseInt(split[1]) > 0 && Integer.parseInt(split[2]) > 0) {
+                Integer.parseInt(split[FileConst.INDEX_MAP_LIMIT_X]);
+                Integer.parseInt(split[FileConst.INDEX_MAP_LIMIT_Y]);
+                if (Integer.parseInt(split[FileConst.INDEX_MAP_LIMIT_X]) > 0 && Integer.parseInt(split[FileConst.INDEX_MAP_LIMIT_Y]) > 0) {
                     return true;
                 }
             }
@@ -24,11 +25,11 @@ public class FileValidator {
     }
 
     public static boolean isFormatCorrectForMountain(String line) {
-        String[] split = line.split(" - ");
+        String[] split = line.split(FileConst.SEPARATOR);
         if (split.length == 3) {
             try {
-                Integer.parseInt(split[1]);
-                Integer.parseInt(split[2]);
+                Integer.parseInt(split[FileConst.INDEX_MOUNTAIN_POSITION_X]);
+                Integer.parseInt(split[FileConst.INDEX_MOUNTAIN_POSITION_Y]);
                 return true;
             }
             catch (NumberFormatException e) {
@@ -39,12 +40,12 @@ public class FileValidator {
     }
 
     public static boolean isFormatCorrectForTreasure(String line) {
-        String[] split = line.split(" - ");
+        String[] split = line.split(FileConst.SEPARATOR);
         if (split.length == 4) {
             try {
-                Integer.parseInt(split[1]);
-                Integer.parseInt(split[2]);
-                Integer.parseInt(split[3]);
+                Integer.parseInt(split[FileConst.INDEX_TREASURE_POSITION_X]);
+                Integer.parseInt(split[FileConst.INDEX_TREASURE_POSITION_Y]);
+                Integer.parseInt(split[FileConst.INDEX_TREASURE_QUANTITY]);
                 return true;
             }
             catch (NumberFormatException e) {
@@ -55,14 +56,14 @@ public class FileValidator {
     }
 
     public static boolean isFormatCorrectForAdventurer(String line) {
-        String[] split = line.split(" - ");
+        String[] split = line.split(FileConst.SEPARATOR);
         if (split.length == 6) {
             try {
-                Integer.parseInt(split[2]);
-                Integer.parseInt(split[3]);
-                if (split[4].length() == 1) {
-                    Orientation.fromLetter(split[4].charAt(0));
-                    Movement.fromString(split[5]);
+                Integer.parseInt(split[FileConst.INDEX_ADVENTURER_POSITION_X]);
+                Integer.parseInt(split[FileConst.INDEX_ADVENTURER_POSITION_Y]);
+                if (split[FileConst.INDEX_ADVENTURER_ORIENTATION].length() == 1) {
+                    Orientation.fromLetter(split[FileConst.INDEX_ADVENTURER_ORIENTATION].charAt(0));
+                    Movement.fromString(split[FileConst.INDEX_ADVENTURER_MOVEMENTS]);
                     return true;
                 }
 

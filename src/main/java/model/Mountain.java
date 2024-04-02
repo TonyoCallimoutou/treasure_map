@@ -1,5 +1,8 @@
 package main.java.model;
 
+import main.java.constants.FileConst;
+import main.java.enums.LetterItem;
+
 public class Mountain extends ItemTreasureMap {
 
     public Mountain(Position position) {
@@ -8,6 +11,6 @@ public class Mountain extends ItemTreasureMap {
 
     @Override
     public String toString() {
-        return "M - " + getPosition().getX() + " - " + getPosition().getY();
+        return LetterItem.MOUNTAIN.getLetter() + FileConst.SEPARATOR + getPosition().getX() + FileConst.SEPARATOR + getPosition().getY();
     }
 }

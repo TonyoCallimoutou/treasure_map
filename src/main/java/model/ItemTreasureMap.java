@@ -17,10 +17,6 @@ public class ItemTreasureMap {
         return position;
     }
 
-    public boolean isTreasure() {
-        return this instanceof Treasure;
-    }
-
     public void setPosition(Position position) {
         this.position = position;
     }

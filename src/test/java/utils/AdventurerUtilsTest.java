@@ -1,5 +1,7 @@
 package test.java.utils;
 
+import main.java.enums.Movement;
+import main.java.enums.Orientation;
 import main.java.model.*;
 import main.java.utils.AdventurerUtils;
 import org.junit.Before;
@@ -12,6 +14,8 @@ public class AdventurerUtilsTest {
     String movementStr = "AADADAGGA";
     int limitX = 4;
     int limitY = 5;
+    int positionX = 1;
+    int positionY = 2;
     Adventurer adventurer1;
     Adventurer adventurer2;
     TreasureMap treasureMap;
@@ -19,7 +23,7 @@ public class AdventurerUtilsTest {
 
     @Before
     public void setUp() {
-        adventurer1 = new Adventurer("Lara", new Position(1, 2), Orientation.EAST, Movement.fromString(movementStr));
+        adventurer1 = new Adventurer("Lara", new Position(positionX, positionY), Orientation.EAST, Movement.fromString(movementStr));
         adventurer2 = new Adventurer("Lucas", new Position(0, 0), Orientation.EAST, Movement.fromString(movementStr));
         treasureMap = new TreasureMap();
         treasureMap.setLimitX(limitX);
@@ -33,9 +37,31 @@ public class AdventurerUtilsTest {
     }
 
     @Test
-    public void testMoveForwardAdventurer() {
+    public void testMoveForwardAdventurerNorth() {
+        adventurer1.setOrientation(Orientation.NORTH);
         AdventurerUtils.moveAdventurer(adventurer1, Movement.MOVE_FORWARD, treasureMap);
-        assertEquals(new Position(2, 2), adventurer1.getPosition());
+        assertEquals(new Position(positionX, positionY-1), adventurer1.getPosition());
+    }
+
+    @Test
+    public void testMoveForwardAdventurerEast() {
+        adventurer1.setOrientation(Orientation.EAST);
+        AdventurerUtils.moveAdventurer(adventurer1, Movement.MOVE_FORWARD, treasureMap);
+        assertEquals(new Position(positionX+1, positionY), adventurer1.getPosition());
+    }
+
+    @Test
+    public void testMoveForwardAdventurerWest() {
+        adventurer1.setOrientation(Orientation.WEST);
+        AdventurerUtils.moveAdventurer(adventurer1, Movement.MOVE_FORWARD, treasureMap);
+        assertEquals(new Position(positionX-1, positionY), adventurer1.getPosition());
+    }
+
+    @Test
+    public void testMoveForwardAdventurerSouth() {
+        adventurer1.setOrientation(Orientation.SOUTH);
+        AdventurerUtils.moveAdventurer(adventurer1, Movement.MOVE_FORWARD, treasureMap);
+        assertEquals(new Position(positionX, positionY+1), adventurer1.getPosition());
     }
 
     @Test
@@ -77,14 +103,14 @@ public class AdventurerUtilsTest {
             AdventurerUtils.moveAdventurer(adventurer1, Movement.MOVE_FORWARD, treasureMap);
             fail("Expected exception was not thrown");
         } catch (RuntimeException e) {
-            assertEquals("Position (x=4, y=4) is out of bounds", e.getMessage());
+            assertEquals("Position (x="+limitX+", y="+limitX+") is out of bounds", e.getMessage());
         }
     }
 
     @Test
     public void testFailedMoveForwardAdventurerCauseOfMountain() {
-        Position positionOrigin = new Position(1, 2);
-        Position positionMountain = new Position(2, 2);
+        Position positionOrigin = new Position(positionX, positionY);
+        Position positionMountain = new Position(positionX+1, positionY);
         adventurer1.setPosition(positionOrigin);
         treasureMap.addItemTreasureMap(new Mountain(positionMountain));
 
@@ -94,8 +120,8 @@ public class AdventurerUtilsTest {
 
     @Test
     public void testFailedMoveForwardAdventurerCauseOfAdventurer() {
-        Position positionOrigin = new Position(1, 2);
-        Position positionAdventurer = new Position(2, 2);
+        Position positionOrigin = new Position(positionX, positionY);
+        Position positionAdventurer = new Position(positionX+1, positionY);
         adventurer1.setPosition(positionOrigin);
         adventurer2.setPosition(positionAdventurer);
         treasureMap.addItemTreasureMap(adventurer2);
@@ -106,19 +132,20 @@ public class AdventurerUtilsTest {
 
     @Test
     public void testFailedMoveForwardAdventurerCollectTreasure() {
-        Position positionTreasure = new Position(2, 2);
-        Treasure treasure = new Treasure(positionTreasure, 3);
+        Position positionTreasure = new Position(positionX+1, positionY);
+        int quantity = 3;
+        Treasure treasure = new Treasure(positionTreasure, quantity);
         treasureMap.addItemTreasureMap(treasure);
 
         AdventurerUtils.moveAdventurer(adventurer1, Movement.MOVE_FORWARD, treasureMap);
         assertEquals(positionTreasure, adventurer1.getPosition());
         assertEquals(1, adventurer1.getTreasures());
-        assertEquals(2, treasure.getQuantity());
+        assertEquals(quantity-1, treasure.getQuantity());
     }
 
     @Test
     public void testFailedMoveForwardAdventurerCollectLastTreasure() {
-        Position positionTreasure = new Position(2, 2);
+        Position positionTreasure = new Position(positionX+1, positionY);
         Treasure treasure = new Treasure(positionTreasure, 1);
         treasureMap.addItemTreasureMap(treasure);
 
