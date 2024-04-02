@@ -11,8 +11,9 @@ This project implements a treasure map simulator in Java. It reads an input file
 
 ## Prerequisites
 
-- Java JDK 8 or later
-- Maven (for building the project)
+- Java JDK 17 or later
+- Maven 3.9.6 or later
+- (Optional) docker and docker-compose
 
 ## Input File Format
 
@@ -50,11 +51,19 @@ git clone https://github.com/TonyoCallimoutou/treasure_map.git
 ```
 cd treasure-map
 ```
-3. Build the project using Maven:
+
+## Build project and run test without docker
+
+1. Build the project using Maven:
 ```
 mvn clean install
 ```
-## Run the project
+
+2. Run only the tests:
+```
+mvn test
+```
+## Run the project without docker
 
 ### Default Paths
 By default, the program will use the following file paths:
@@ -73,4 +82,31 @@ Alternatively, you can specify custom input and/or output file paths:
 
 ```
 java -jar .\target\treasure_map-1.0-SNAPSHOT.jar --input=src/main/resources/input.txt --output=src/main/resources/result.txt
+```
+
+## (Optional) Run the project using Docker
+
+1. Build the Docker image:
+```
+docker-compose up --build -d
+```
+
+2. build the project using Maven:
+```
+docker exec treasure_map_builder mvn clean install
+```
+
+2. Run only the tests:
+```
+docker exec treasure_map_builder mvn test
+```
+
+3. Run the Docker container with or without default input and output file paths:
+```
+docker exec treasure_map java -jar /app/target/treasure_map-1.0-SNAPSHOT.jar --input=src/main/resources/input.txt --output=src/main/resources/result.txt
+```
+
+4. Stop and remove the Docker container:
+```
+docker-compose down
 ```

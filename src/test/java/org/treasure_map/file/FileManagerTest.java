@@ -1,8 +1,7 @@
-package file;
+package org.treasure_map.file;
 
 import org.treasure_map.enums.Movement;
 import org.treasure_map.enums.Orientation;
-import org.treasure_map.file.FileManager;
 import org.junit.Test;
 import org.treasure_map.model.*;
 
@@ -73,7 +72,7 @@ public class FileManagerTest {
             FileManager.createTreasureMapReadFileFromTxt(testFile);
             fail("Expected exception was not thrown");
         } catch (RuntimeException e) {
-            assertEquals("Format incorrect for treasure map ", e.getMessage());
+            assertEquals("Format incorrect for treasure map", e.getMessage());
         }
     }
 

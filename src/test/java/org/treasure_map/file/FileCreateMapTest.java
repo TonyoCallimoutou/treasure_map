@@ -1,4 +1,4 @@
-package file;
+package org.treasure_map.file;
 
 import org.treasure_map.file.FileCreateMap;
 import org.junit.Before;

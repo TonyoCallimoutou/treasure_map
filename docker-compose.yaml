@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  treasure_map_builder:
+    image: maven:3.9.6
+    container_name: treasure_map_builder
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bash -c "tail -f /dev/null"
+
+  treasure_map:
+    image: openjdk:20-jdk
+    container_name: treasure_map
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: bash -c "tail -f /dev/null"

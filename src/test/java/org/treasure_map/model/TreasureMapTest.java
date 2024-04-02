@@ -1,10 +1,7 @@
-package model;
+package org.treasure_map.model;
 
 import org.treasure_map.enums.Movement;
 import org.treasure_map.enums.Orientation;
-import org.treasure_map.model.Adventurer;
-import org.treasure_map.model.Position;
-import org.treasure_map.model.TreasureMap;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
