@@ -40,6 +40,22 @@ A - Lara - 1 - 1 - S - AADADAGGA
     - `D`: Turn right
     - `G`: Turn left
 
+
+## Output File Format
+
+The output file will contain the final positions of the adventurers and the number of treasures they collected. Here's an example format:
+```
+C - 3 - 4
+M - 1 - 0
+M - 2 - 1
+T - 1 - 3 - 2
+A - Lara - 0 - 3 - S - 3
+```
+- `C` defines the dimensions of the map.
+- `M` indicates the presence of a mountain at a specific position.
+- `T` represents a treasure with its position and the number of treasures remaining.
+- `A` represents an adventurer with their name, final position, orientation, and treasures collected.
+
 ## Install the project
 
 1. Clone this repository to your local machine:
@@ -59,7 +75,7 @@ cd treasure-map
 mvn clean install
 ```
 
-2. Run only the tests:
+2. (Optional) Run only the tests:
 ```
 mvn test
 ```
@@ -101,11 +117,18 @@ docker exec treasure_map_builder mvn clean install
 docker exec treasure_map_builder mvn test
 ```
 
-3. Run the Docker container with or without default input and output file paths:
+3. Run the Docker container with default input and output file paths:
+```
+docker exec treasure_map java -jar /app/target/treasure_map-1.0-SNAPSHOT.jar
+```
+
+3. (Optional) Run the Docker container with custom input and output file paths:
 ```
 docker exec treasure_map java -jar /app/target/treasure_map-1.0-SNAPSHOT.jar --input=src/main/resources/input.txt --output=src/main/resources/result.txt
 ```
-
+*Please note that to use custom file paths for input and output, make sure the files are placed in your project's main folder, as this is the only folder accessible from the Docker container.*
+<br>
+<br>
 4. Stop and remove the Docker container:
 ```
 docker-compose down
